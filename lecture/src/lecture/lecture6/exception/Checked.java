@@ -1,5 +1,5 @@
 package lecture.lecture6.exception;
 
-public class MyException {
+public class Checked extends Exception {
 
 }
