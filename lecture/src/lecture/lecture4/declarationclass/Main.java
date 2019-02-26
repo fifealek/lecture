@@ -1,5 +1,8 @@
 package lecture.lecture4.declarationclass;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
     public static void main(String ... args) {
@@ -11,6 +14,8 @@ public class Main {
         int notFree =2;
 
         SimpleClass simpleClass =new ChildSimpleClass(free,description,notFree);
+       // ChildSimpleClass childSimpleClass = new ChildSimpleClass(free,description,notFree);
+
         System.out.println("################################");
         SimpleClass simpleClass1 = new SubChildSimpleClass(free,description,notFree,'c');
 
@@ -28,5 +33,21 @@ public class Main {
 
         ClassBlocks classBlocks = new ClassBlocks(simpleClass);
 
+//
+//        SimpleClass simpleClass2 =new SimpleClass(1,"2");;
+
+      A a = new A();
+      a.setA(1);
+      a.setB("Df");
+
+      a.getA();
+      a.getB();
+
+      List list =new ArrayList();
+      list.add(subChildSimpleClass);
+      list.add(simpleClass);
+      if(list.get(0) instanceof SubChildSimpleClass) {
+          ((SimpleClass)list.get(0)).getFree();
+      };
     }
 }

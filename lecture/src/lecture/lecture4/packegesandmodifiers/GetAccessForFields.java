@@ -13,9 +13,9 @@ public class GetAccessForFields {
 
 
 
-        //  modifiers.anInt; //private
-        //  modifiers.string;//protected
-        //  modifiers.vT;//default
+//          modifiers.anInt; //private
+//          modifiers.string;//protected
+//          modifiers.vT;//default
 
         System.out.println(modifiers.youCanSeeMeAnyWhere);
     }

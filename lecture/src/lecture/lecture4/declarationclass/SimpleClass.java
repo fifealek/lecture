@@ -12,6 +12,7 @@ public class SimpleClass {
         this.description = description;
     }
 
+
     public int getFree() {
         return free;
     }
