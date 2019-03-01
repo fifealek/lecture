@@ -1,17 +1,22 @@
 package lecture.lecture7.inputstream;
 
 import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
+import java.io.Closeable;
 import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.RandomAccessFile;
 import java.io.StringReader;
+import java.util.Random;
 
 public class ShowInputStream {
 
@@ -22,7 +27,7 @@ public class ShowInputStream {
             "/home/fife/lectures/lecture/lecture/ShowInputStream.java";
     private static String FILE_NAME = "ShowInputStream.java";
 
-    public static void dataInputStream() throws IOException {
+    public static void dataInputStream() {
         java.io.DataInputStream dataInputStream = null;
         try {
             byte b[] = new String("Hello world").getBytes();
@@ -39,14 +44,12 @@ public class ShowInputStream {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (dataInputStream != null) {
-                dataInputStream.close();
-            }
+                close(dataInputStream);
         }
 
     }
 
-    public static void bufferedInputStream() throws IOException {
+    public static void bufferedInputStream() {
         BufferedInputStream inputStream = null;
         try {
             inputStream = new BufferedInputStream(new ByteArrayInputStream(MESSAGE.getBytes()));
@@ -59,13 +62,13 @@ public class ShowInputStream {
             e.printStackTrace();
         } finally {
             if (inputStream != null) {
-                inputStream.close();
+                close(inputStream);
             }
         }
     }
 
 
-    public static void dataInputStream(String fileName) throws IOException {
+    public static void dataInputStream(String fileName) {
         java.io.DataInputStream dataInputStream = null;
         try {
             byte b[] = new String("Hello world").getBytes();
@@ -82,9 +85,8 @@ public class ShowInputStream {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            if (dataInputStream != null) {
-                dataInputStream.close();
-            }
+
+                close(dataInputStream);
         }
 
     }
@@ -100,18 +102,18 @@ public class ShowInputStream {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            stringReader.close();
+            close(stringReader);
         }
 
     }
 
-    private static void readWrite(String fileName) throws IOException {
+    private static void readWrite(String fileName) {
         BufferedReader bufferedReader = null;
         PrintWriter printWriter = null;
 
         try {
             bufferedReader = new BufferedReader(new FileReader(fileName));
-            printWriter = new PrintWriter(new FileWriter(FILE_PATH));
+            printWriter = new PrintWriter(new FileWriter(FILE_NAME));
             String line = null;
             while ((line = bufferedReader.readLine()) != null) {
                 printWriter.println(line);
@@ -119,24 +121,73 @@ public class ShowInputStream {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            bufferedReader.close();
-            printWriter.close();
+            close(bufferedReader);
+            close(printWriter);
         }
     }
 
-    private static void randomAccessFile(String fileName, String rw) throws IOException {
+    private static void randomAccessFile(String fileName, String rw) {
         RandomAccessFile randomAccessFile = null;
         try {
             randomAccessFile = new RandomAccessFile(new File(fileName), rw);
-           long size = randomAccessFile.length();
-                   for(long l=0;l<size;l++) {
-                       System.out.print((char)randomAccessFile.read());
-                   }
+            long size = randomAccessFile.length();
+            for (long l = 0; l < size; l++) {
+                System.out.print((char) randomAccessFile.read());
+            }
+            Random random = new Random(size / 2);
+            long l = 120;
+            print();
+            System.out.println(l);
+            print();
+            randomAccessFile.seek(l > 0 ? l : l * (-1));
+            System.out.println(randomAccessFile.readLine());
+
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
             if (randomAccessFile != null) {
-                randomAccessFile.close();
+                close(randomAccessFile);
+            }
+        }
+
+    }
+
+
+    private static void close(Closeable closeable) {
+        try {
+            if (closeable != null) {
+                closeable.close();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void dataWrite(String fileName) throws IOException {
+        DataOutputStream dataOutputStream = null;
+        DataInputStream dataInputStream = null;
+        try {
+            dataOutputStream = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(fileName)));
+            dataOutputStream.writeDouble(1.22345d);
+            dataOutputStream.writeChar('C');
+            dataOutputStream.writeBoolean(true);
+            dataOutputStream.writeUTF(MESSAGE);
+            dataOutputStream.flush();
+            dataOutputStream.close();
+
+            dataInputStream = new DataInputStream(new BufferedInputStream(new FileInputStream(fileName)));
+
+            System.out.println(dataInputStream.readDouble());
+            System.out.println(dataInputStream.readChar());
+            System.out.println(dataInputStream.readBoolean());
+            System.out.println(dataInputStream.readUTF());
+            dataInputStream.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (dataOutputStream != null) {
+                dataOutputStream.close();
             }
         }
 
@@ -157,7 +208,10 @@ public class ShowInputStream {
         print();
         readWrite("/home/fife/lectures/lecture/lecture/src/lecture/lecture7/inputstream/ShowInputStream.java");
         print();
-        randomAccessFile(FILE_PATH1,"r");
+        randomAccessFile(FILE_PATH1, "r");
+        print();
+        dataWrite("1.data");
+        print();
     }
 
 }
