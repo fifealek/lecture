@@ -16,6 +16,11 @@ public class Wieght extends Mass implements Serializable {
     }
 
     @Override
+    public int count(){
+        return 1;
+    }
+
+    @Override
     public String toString() {
         return "Wieght{" +
                "size=" + size +
