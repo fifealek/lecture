@@ -1,8 +1,13 @@
 package lecture.lecture8.lists;
 
+import static lecture.lecture8.set.ShowSet.getCollection;
+
 import lecture.lection10.decorator.Fixed;
 import lecture.lection10.decorator.MainRun;
+import lecture.lecture8.Sets;
 
+import java.lang.reflect.Array;
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -12,6 +17,7 @@ public class ShowLists {
 
     public void showArrayList() {
         List<Fixed> list = new ArrayList();
+        //List list = new ArrayList()
         list.add(MainRun.getFixedType());
         list.add(MainRun.getFixedType());
         System.out.println("list.size() : " + list.size());
@@ -47,14 +53,56 @@ public class ShowLists {
         }
     }
 
+    public void showQueue() {
+        ArrayDeque<Sets> ad = new ArrayDeque<>(getCollection());
+        Sets s1 = new Sets(3, "Alo");
+        Sets s2 = new Sets(5, "Oly");
+        ad.offerFirst(s1);
+        ad.offerLast(s2);
+        System.out.println(ad);
+        ad.addFirst(s2);
+        ad.addLast(s1);
+        System.out.println(ad);
+        ad.removeAll(getCollection());
+        System.out.println(ad);
+        ad.remove(s1);
+        System.out.println(ad);
+
+        System.out.println(ad.size());
+        int counts = ad.size();
+  // Так делать не надо
+//        for (int t = 0; t < counts; ++t) {
+//            System.out.println(ad.pollFirst());
+//        }
+        ArrayDeque<Sets> ad1= new ArrayDeque<>(ad);
+        for (int t = 0; t < counts; ++t) {
+            System.out.println(ad.pollFirst());
+        }
+
+        System.out.println("#################");
+        for (int t = 0; t < counts; ++t) {
+            System.out.println(ad1.pollLast());
+        }
+
+//        for (int t=0;t<10;t++){
+//            System.out.println(ad.poll());
+//        }
+//
+//        System.out.println(ad.size());
+//        System.out.println(ad);
+    }
+
     public static void main(String... args) {
         ShowLists showLists = new ShowLists();
         showLists.showArrayList();
 
         showLists.showLinkedList();
+        showLists.showQueue();
+
     }
 
     private class A {
+
         private int index;
 
         public A(int index) {
@@ -68,8 +116,8 @@ public class ShowLists {
         @Override
         public String toString() {
             return "A{" +
-                    "index=" + index +
-                    '}';
+                   "index=" + index +
+                   '}';
         }
     }
 }

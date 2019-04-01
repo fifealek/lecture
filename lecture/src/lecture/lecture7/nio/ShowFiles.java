@@ -22,8 +22,6 @@ public class ShowFiles {
         System.out.println("isWritable " + Files.isWritable(Paths.get(uri)));
         System.out.println("isSymbolicLink " + Files.isSymbolicLink(Paths.get(uri)));
         System.out.println(Files.getAttribute(Paths.get(uri), "lastModifiedTime", LinkOption.NOFOLLOW_LINKS));
-
-
     }
 
     public static void copy(String uri, String path) throws IOException {

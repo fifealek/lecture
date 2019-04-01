@@ -198,20 +198,20 @@ public class ShowInputStream {
     }
 
     public static void main(String... args) throws IOException {
-        dataInputStream();
-        print();
-        dataInputStream(FILE_PATH);
-        print();
-        bufferedInputStream();
-        print();
-        stringReader(MESSAGE);
-        print();
-        readWrite("/home/fife/lectures/lecture/lecture/src/lecture/lecture7/inputstream/ShowInputStream.java");
-        print();
-        randomAccessFile(FILE_PATH1, "r");
-        print();
+//        dataInputStream();
+//        print();
+//        dataInputStream(FILE_PATH);
+//        print();
+     //   bufferedInputStream();
+       // print();
+      //  stringReader(MESSAGE);
+//        print();
+     //   readWrite("/home/fife/lectures/lecture/lecture/src/lecture/lecture7/inputstream/ShowInputStream.java");
+//        print();
+//        randomAccessFile(FILE_PATH1, "r");
+//        print();
         dataWrite("1.data");
-        print();
+//        print();
     }
 
 }

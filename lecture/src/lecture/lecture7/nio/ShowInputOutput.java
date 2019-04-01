@@ -14,7 +14,12 @@ public class ShowInputOutput {
     private static int BSIZE = 1024 * 1024 * 1024;
 
     private static void showChannel() throws Exception {
+        //String fg = new String("some".toCharArray(),1,3);
+        String fg = new String("some".getBytes(),"UTF-8");
+          System.out.println(fg);
+
         FileChannel fileChannel = new FileOutputStream("data2.data").getChannel();
+        //String s =new String()
         fileChannel.write(ByteBuffer.wrap("something".getBytes()));
         fileChannel.close();
 
@@ -56,14 +61,13 @@ public class ShowInputOutput {
     }
 
     private static void saveUseChannel() throws Exception {
-        FileChannel fileChannel = new RandomAccessFile("data.data", "rw").getChannel();
+        //FileChannel fileChannel = new RandomAccessFile("data.data", "rw").getChannel();
+        FileChannel fileChannel = new FileOutputStream("data.data").getChannel();
         IntBuffer intBuffer = fileChannel.map(FileChannel.MapMode.READ_WRITE, 0, BSIZE).asIntBuffer();
         for (int t = 0; t < BSIZE / 4; t++) {
             intBuffer.put(t);
         }
         fileChannel.close();
-
-
     }
 
     private static void saveUseOutput() throws Exception {

@@ -22,8 +22,11 @@ public class OutputToWrite {
     private static void charRead() throws Exception {
         java.io.CharArrayReader charArrayReader = new CharArrayReader(SAVE_MESSAGE.toCharArray());
         BufferedReader br=new BufferedReader(charArrayReader);
-        String line = br.readLine();
-        System.out.println(line);
+        String line = null;
+        while((line = br.readLine())!=null) {
+            System.out.println(line);
+        }
+
     }
 
     public static void main(String ...args) throws Exception {

@@ -16,7 +16,7 @@ import java.util.TreeSet;
 
 public class ShowSet {
 
-    public List<Sets> getCollection() {
+    public static List<Sets> getCollection() {
         Sets sets = new Sets(100, "Olex");
         Sets sets1 = new Sets(21, "Alex");
         Sets sets2 = new Sets(33, "Viktor");

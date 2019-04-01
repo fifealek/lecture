@@ -6,4 +6,5 @@ public class FixeRoom extends Fixed {
     public double cost() {
         return 0;
     }
+
 }
