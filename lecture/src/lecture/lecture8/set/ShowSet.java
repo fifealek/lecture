@@ -101,11 +101,11 @@ public class ShowSet {
 
     public static void main(String... args) {
         ShowSet set = new ShowSet();
-        set.showHashSet();
-        set.showTreeSet();
+//        set.showHashSet();
+//        set.showTreeSet();
         set.sort();
-        set.showHashSet1();
-        set.showPriorityQueue();
+//        set.showHashSet1();
+//        set.showPriorityQueue();
     }
 
 }

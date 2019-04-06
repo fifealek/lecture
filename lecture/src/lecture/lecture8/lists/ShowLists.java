@@ -70,8 +70,8 @@ public class ShowLists {
 
         System.out.println(ad.size());
         int counts = ad.size();
-  // Так делать не надо
-//        for (int t = 0; t < counts; ++t) {
+  // Do not use this structure for ArrayDeque
+//        for (int t = 0; t < ad.size(); ++t) {
 //            System.out.println(ad.pollFirst());
 //        }
         ArrayDeque<Sets> ad1= new ArrayDeque<>(ad);
@@ -93,7 +93,7 @@ public class ShowLists {
     }
 
     public static void main(String... args) {
-        ShowLists showLists = new ShowLists();
+       ShowLists showLists = new ShowLists();
         showLists.showArrayList();
 
         showLists.showLinkedList();
