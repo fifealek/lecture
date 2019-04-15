@@ -7,7 +7,7 @@ import java.util.Vector;
 
 public class Contener {
 
-    private Vector vector = new Vector();
+    private Vector<Integer> vector = new Vector();
     //private List vector = new ArrayList();
     private boolean isProduce = false;
 
@@ -16,11 +16,16 @@ public class Contener {
         Random random = new Random();
         System.out.println("##########");
         while (!isProduce) {
-            for (int t = 0; t < 300; t++) {
+            int count =vector.size();
+            if(count==0) {
+                count=300;
+            }
+            for (int t = 0; t < count; t++) {
 
                 vector.add(random.nextInt(300));
-                System.out.println("produce " + vector.get(t));
+
             }
+            System.out.println("produce size " + vector.size());
             isProduce = true;
         }
         wait();
@@ -30,14 +35,20 @@ public class Contener {
         while (isProduce) {
             for (int t = 0; t < vector.size(); t++) {
                 Object o = vector.get(t);
-                System.out.println("consume " + o);
+                //System.out.println("consume " + o);
                 vector.remove(o);
             }
             isProduce = false;
         }
         System.out.println("size " + vector.size());
         // wait();
-        notifyAll();
+        notify();
+    }
+
+    public int getVectorSum() {
+       int sum = vector.stream().mapToInt(i->i).sum();
+       vector.removeAllElements();
+       return sum;
     }
 
 }

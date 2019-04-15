@@ -12,13 +12,11 @@ public class Producer implements Runnable {
     public void run() {
 
         try {
-
-            while(!Thread.interrupted()) {
-               contener.produce();
+            while (!Thread.interrupted()) {
+                contener.produce();
                 Thread.sleep(20);
             }
-        }
-        catch (InterruptedException e) {
+        } catch (InterruptedException e) {
             e.getStackTrace();
         }
 
