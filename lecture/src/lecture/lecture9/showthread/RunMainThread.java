@@ -9,8 +9,10 @@ public class RunMainThread {
         Thread thread=new Thread(r);
         thread.start();
 
-        thread=new Thread(new SimpleSecond());
-        thread.start();
+        thread.join();
+
+        thread=new SimpleSecond();
+        //thread.start();
 
         r = new StopThread();
         Thread t1= new Thread(r);

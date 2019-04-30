@@ -15,7 +15,7 @@ public class Consumer implements Runnable {
             while(!Thread.interrupted()) {
 
               contener.consume();
-                Thread.sleep(20);
+                //Thread.sleep(20);
             }
         }
         catch (Exception e) {

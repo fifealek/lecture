@@ -10,7 +10,7 @@ public class Main2 {
 
     public static void main(String args[]) throws Exception {
         Contener contener = new Contener();
-        List<Future<Integer>> array = new ArrayList();
+        //List<Future<Integer>> array = new ArrayList();
         ExecutorService exe = Executors.newFixedThreadPool(2);
         exe.submit(new Producer(contener));
 

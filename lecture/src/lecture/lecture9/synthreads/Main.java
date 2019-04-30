@@ -1,6 +1,5 @@
 package lecture.lecture9.synthreads;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -16,7 +15,7 @@ public class Main {
         executor.execute(new Consumer(contener));
 
 
-        Thread.sleep(5000);
+        Thread.sleep(15000);
         executor.shutdownNow();
     }
 }
